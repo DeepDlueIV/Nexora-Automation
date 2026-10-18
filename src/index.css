@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: 0 0% 100%;
+    --foreground: 210 14% 17%;
+    --primary: 210 14% 17%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 184 5% 55%;
+    --accent: 239 84% 67%;
+    --accent-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --ring: 239 84% 67%;
+    --success: 151 52% 34%;
+    --success-foreground: 151 52% 24%;
+    --destructive: 0 62% 48%;
+    --destructive-foreground: 0 62% 38%;
+    --warning: 36 90% 40%;
+    --warning-foreground: 36 90% 30%;
+    --radius: 0.5rem;
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Inter', sans-serif;
+    --shadow-dashboard: 0 25px 80px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.06);
+    --shadow-play: 0 2px 12px rgba(0, 0, 0, 0.08);
+    --shadow-dialog: 0 32px 100px -24px hsl(var(--foreground) / 0.25);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-background font-body text-foreground antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.18);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .page-shell.h-screen {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .hero-content {
+    padding-top: clamp(22px, 4.2vh, 48px);
+  }
+
+  .hero-backdrop {
+    background-image: url('/forest-poster.webp');
+    background-position: center;
+    background-size: cover;
+  }
+
+  .hero-video {
+    object-position: center;
+  }
+
+  .hero-headline {
+    text-wrap: balance;
+  }
+
+  .hero-description {
+    text-wrap: pretty;
+  }
+
+  .glass-dashboard {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .dialog-scroll {
+    max-height: calc(100dvh - 40px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+@media (max-height: 700px) {
+  .hero-content { padding-top: 10px; }
+  .hero-badge { margin-bottom: 16px; }
+  .hero-headline { font-size: clamp(2.5rem, 5.7vw, 4rem); }
+  .hero-description { margin-top: 12px; }
+  .hero-actions { margin-top: 16px; }
+  .dashboard-position { margin-top: 24px; }
+}
+
+@media (max-height: 500px) {
+  .site-navbar { padding-top: 10px; padding-bottom: 10px; }
+  .hero-content { padding-top: 0; }
+  .hero-badge { margin-bottom: 8px; padding-top: 3px; padding-bottom: 3px; font-size: 11px; }
+  .hero-headline { font-size: 2.25rem; line-height: 0.95; }
+  .hero-description { max-width: 650px; margin-top: 8px; font-size: 13px; line-height: 1.5; }
+  .hero-actions { margin-top: 10px; }
+  .hero-actions button { height: 36px; padding-top: 8px; padding-bottom: 8px; }
+  .hero-actions .hero-play-button { width: 36px; }
+  .dashboard-position { margin-top: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
